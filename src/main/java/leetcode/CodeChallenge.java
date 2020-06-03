@@ -13,17 +13,12 @@ public class CodeChallenge {
 	public static int singleNumber(int[] nums) {
 		Map<Integer, Integer> map = new HashMap<>();
 		for(int value: nums){
-			if(map.containsKey(value)){
-				map.put(value, map.get(value) + 1);
-			}
-			else {
-				map.put(value, 1);
-			}
+			map.put(value, map.getOrDefault(value, 0) + 1);
 		}
 
 		return map.entrySet().stream()
 				.filter(e -> e.getValue() == 1)
-				.map(e -> e.getKey())
+				.map(Map.Entry::getKey)
 				.findFirst().get();
 	}
 }
