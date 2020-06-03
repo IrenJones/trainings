@@ -15,6 +15,8 @@ public class UKandUS {
 	public static void main(String[] args) {
 		String line;
 		Scanner scanner = new Scanner(System.in);
+		// another variant to fix is to use Integer.parseInt(scanner.nextLine().trim())
+		// for one single int in a row
 		int n = scanner.nextInt();
 		List<String> strings = new ArrayList<>(n);
 		while (!scanner.hasNextInt()) {
