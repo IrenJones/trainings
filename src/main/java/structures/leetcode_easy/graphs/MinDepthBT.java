@@ -1,23 +1,10 @@
-package graphs;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+package structures.leetcode_easy.graphs;
 
 import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Queue;
 
 public class MinDepthBT {
-	@Getter
-	@Setter
-	@AllArgsConstructor
-	static
-	class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-	}
 
 	public static void main(String[] args) {
 		TreeNode root = createTree();

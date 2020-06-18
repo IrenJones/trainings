@@ -1,4 +1,4 @@
-package algo;
+package hackerrank.algo;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,10 +11,11 @@ public class BirthdayChocolate {
 	static int birthday(List<Integer> s, int d, int m) {
 		int result = 0;
 
-		for(int i=0; i <= s.size() - m; i++) {
-			if( s.subList(i, i+m).stream()
-					.mapToInt(n -> n)
-					.sum() == d) {
+		for(int i=0; i<= s.size() - m; i++){
+			if (s.subList(i, i+m)
+					.stream()
+					.mapToInt(v -> v)
+					.sum() == d){
 				result++;
 			}
 		}

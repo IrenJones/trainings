@@ -1,7 +1,14 @@
 package leetcode;
 
+import scala.Int;
+
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class CodeChallenge {
 	public static void main(String[] args) {
@@ -12,7 +19,7 @@ public class CodeChallenge {
 	// Find that single one. Solution should have linear runtime complexity
 	public static int singleNumber(int[] nums) {
 		Map<Integer, Integer> map = new HashMap<>();
-		for(int value: nums){
+		for (int value : nums) {
 			map.put(value, map.getOrDefault(value, 0) + 1);
 		}
 

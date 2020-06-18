@@ -20,8 +20,6 @@ public class Testick {
 		System.out.println(reverse(-13));
 		System.out.println(reverse(1200));
 
-		System.out.println(reverseForBigIntegers(1200));
-		System.out.println(reverseForBigIntegers(1534236469));
 		notString("not bad");
 		Map<String, Integer> result = calculateCount("cat cat ctatat got got hat 234 fo");
 		for (Map.Entry<String, Integer> e : result.entrySet()) {
@@ -83,26 +81,6 @@ public class Testick {
 	public static int reverse(int x) {
 		StringBuilder s = new StringBuilder(String.valueOf(Math.abs(x)));
 		Integer res = Integer.valueOf(s.reverse().toString());
-		return x < 0
-				? -1 * res
-				: res;
-	}
-
-	public static int reverseForBigIntegers(int x) {
-		int input = Math.abs(x);
-		int res = 0;
-		int diff;
-		while (input > 0) {
-			diff = input % 10;
-			if (res > Integer.MAX_VALUE / 10 ||
-					res == Integer.MAX_VALUE / 10 && diff > 7 ||
-					x < 0 && -1 * res < Integer.MIN_VALUE / 10 && diff > 8 ||
-					x < 0 && -1 * res == Integer.MIN_VALUE / 10 && diff > 8) {
-				return 0;
-			}
-			res = res * 10 + diff;
-			input = input / 10;
-		}
 		return x < 0
 				? -1 * res
 				: res;

@@ -1,23 +1,9 @@
-package graphs;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+package structures.leetcode_easy.graphs;
 
 import java.util.Objects;
 import java.util.Stack;
 
 public class DFS {
-
-	@Getter
-	@Setter
-	@AllArgsConstructor
-	static
-	class TreeNode{
-		int val;
-		TreeNode left;
-		TreeNode right;
-	}
 
 	public static void main(String[] args) {
 		TreeNode root = createTree();

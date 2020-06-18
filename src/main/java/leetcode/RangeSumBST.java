@@ -1,6 +1,6 @@
 package leetcode;
 
-import graphs.ValidBST;
+import structures.leetcode_easy.graphs.ValidBST;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
