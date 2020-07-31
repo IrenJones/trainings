@@ -6,12 +6,12 @@ import java.util.List;
 
 public class ArmstrongNumber {
 	public static void main(String[] args) {
-		System.out.println(check(8204) == false);
-		System.out.println(check(8208) == true);
-		System.out.println(check(153) == true);
-		System.out.println(check(370) == true);
-		System.out.println(check(371) == true);
-		System.out.println(check(407) == true);
+		System.out.println(!check(8204));
+		System.out.println(check(8208));
+		System.out.println(check(153));
+		System.out.println(check(370));
+		System.out.println(check(371));
+		System.out.println(check(407));
 	}
 
 	private static boolean check(int inputValue) {
