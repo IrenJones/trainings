@@ -1,4 +1,4 @@
-package structures.leetcode_easy.graphs;
+package leetcode.leetcode_by_topics.graphs;
 
 import java.util.LinkedList;
 import java.util.Objects;

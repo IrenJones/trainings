@@ -1,4 +1,4 @@
-package structures.leetcode_easy.array;
+package leetcode.leetcode_by_topics.array;
 
 public class RotateArray {
 	public void rotate(int[] nums, int k) {

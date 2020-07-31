@@ -1,4 +1,4 @@
-package structures.leetcode_easy.others;
+package leetcode.leetcode_by_topics.others;
 
 import java.util.ArrayList;
 import java.util.List;

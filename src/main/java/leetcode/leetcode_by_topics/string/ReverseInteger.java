@@ -1,4 +1,4 @@
-package structures.leetcode_easy.string;
+package leetcode.leetcode_by_topics.string;
 
 public class ReverseInteger {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package structures.leetcode_easy.others;
+package leetcode.leetcode_by_topics.others;
 
 public class MissingNumber {
 	public int missingNumber(int[] nums) {

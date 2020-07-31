@@ -1,10 +1,9 @@
-package structures.leetcode_easy.graphs;
+package leetcode.leetcode_by_topics.graphs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
 
 public class BTLevelOrderTraversal {
 	public static void main(String[] args) {

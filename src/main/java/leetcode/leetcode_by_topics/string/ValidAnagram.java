@@ -1,4 +1,4 @@
-package structures.leetcode_easy.string;
+package leetcode.leetcode_by_topics.string;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package structures.leetcode_easy.sort;
+package leetcode.leetcode_by_topics.sort;
 
 public class MergeSortedArray {
 

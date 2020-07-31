@@ -1,4 +1,4 @@
-package structures.leetcode_easy.graphs;
+package leetcode.leetcode_by_topics.graphs;
 
 public class TreeNode {
 	int val;

@@ -1,4 +1,4 @@
-package structures.leetcode_easy.linkedlist;
+package leetcode.leetcode_by_topics.linkedlist;
 
 public class DeleteNNode {
 

@@ -1,4 +1,4 @@
-package structures.leetcode_easy.graphs;
+package leetcode.leetcode_by_topics.graphs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class BTInorderTraversal {
 
 	private static List<Integer> inorderTraversalIterative(TreeNode root) {
 		List<Integer> result = new ArrayList<>();
-		Stack < TreeNode > stack = new Stack < > ();
+		Stack <TreeNode> stack = new Stack < > ();
 
 		TreeNode node = root;
 		while (node != null || !stack.isEmpty()) {
