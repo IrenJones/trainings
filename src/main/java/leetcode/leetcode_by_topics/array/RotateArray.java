@@ -16,4 +16,30 @@ public class RotateArray {
 			nums[0] = tmp;
 		}
 	}
+
+	public static void main(String[] args) {
+		rotateNew(new int[]{1,2,3,4,5,6,7}, 3);
+	}
+
+	public static void rotateNew(int[] nums, int k) {
+		if(k == 0 || nums.length < 2) {
+			return;
+		}
+		int steps = k % nums.length;
+
+		reverseArray (nums, 0, nums.length -1);
+		reverseArray (nums, 0, steps - 1);
+		reverseArray (nums, steps, nums.length -1);
+	}
+
+	public static void reverseArray (int[] arr, int start, int finish) {
+		int tmp;
+		while(start < finish) {
+			tmp = arr[start];
+			arr[start] = arr[finish];
+			arr[finish] = tmp;
+			start++;
+			finish--;
+		}
+	}
 }
