@@ -79,4 +79,27 @@ public class MinDepthBT {
 		}
 		return depth;
 	}
+
+	public int minDepthRecur(TreeNode root) {
+		if (root == null) {
+			return 0;
+		} else if (root.left == null && root.right == null) {
+			return 1;
+		}
+		return getDepth(root);
+	}
+
+	public int getDepth(TreeNode root) {
+		if(root == null) {
+			return 0;
+		}
+
+		int left = getDepth(root.left);
+		int right = getDepth(root.right);
+
+		if(left == 0 || right == 0) {
+			return 1+ Math.max(left, right);
+		}
+		return 1 + Math.min(left, right);
+	}
 }

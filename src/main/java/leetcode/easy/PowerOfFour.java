@@ -22,7 +22,7 @@ public class PowerOfFour {
 			return false;
 		}
 
-		int powCalculated = (int) (Math.log(num) / Math.log(4));
+		int powCalculated = (int) (Math.log10(num) / Math.log10(4));
 		return num == Math.pow(4, powCalculated);
 	}
 }
