@@ -31,4 +31,22 @@ public class NumbersWithUniqueDigits {
 			return result;
 		}
 	}
+
+	public static int countNumbersWithUniqueDigitsDP (int n) {
+		if(n == 0) {
+			return 1;
+		}
+
+		int count = 10;
+		int fn = 9;
+		int availableDigits = 9;
+		int current = 1;
+		while(current < n && availableDigits > 0) {
+			fn = fn * availableDigits;
+			count+= fn;
+			availableDigits--;
+			current++;
+		}
+		return count;
+	}
 }

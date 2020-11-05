@@ -1,12 +1,14 @@
 package leetcode.leetcode_by_topics.linkedlist;
 
+import java.util.List;
+
 public class ReverseLinkedList {
 	public static void main(String[] args) {
 		ListNode list = createLinkedList();
 		ListNode reversed = reverseListIteratively(list);
 
 		ListNode list1 = createLinkedList();
-		ListNode reversed1 = reverseListRecursively(list1);
+		ListNode reversed1 = reverseList(list1);
 	}
 
 	private static ListNode createLinkedList() {
@@ -16,14 +18,32 @@ public class ReverseLinkedList {
 		return n3;
 	}
 
-	public static ListNode reverseListRecursively(ListNode head) {
-		return null;
+	public static ListNode reverseList(ListNode head) {
+		if(head == null || head.next == null) {
+			return head;
+		}
+
+		ListNode prev = reverseList(head.next);
+		head.next = null;
+		return prev;
 	}
 
 	public static ListNode reverseListIteratively(ListNode head) {
 		if(head == null){
 			return head;
 		}
-		return null;
+
+		ListNode prev = head;
+		ListNode current  = prev.next;
+		prev.next = null;
+		ListNode tmp;
+		while(current != null) {
+			tmp = current.next;
+			current.next = prev;
+			prev = current;
+			current = tmp;
+		}
+
+		return prev;
 	}
 }
