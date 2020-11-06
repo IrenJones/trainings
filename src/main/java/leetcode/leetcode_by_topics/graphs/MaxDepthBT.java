@@ -47,4 +47,24 @@ public class MaxDepthBT {
 
 		return ans;
 	}
+
+	public int maxDepthRec(TreeNode root) {
+		if (root == null) {
+			return 0;
+		} else if(root.left == null && root.right == null) {
+			return 1;
+		}
+
+		return helper(root);
+	}
+
+	public int helper(TreeNode node) {
+		if(node == null) {
+			return 0;
+		}
+
+		int left = helper(node.left);
+		int right = helper(node.right);
+		return Math.max(left, right) + 1;
+	}
 }
