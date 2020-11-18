@@ -1,4 +1,4 @@
-package leetcode.medium;
+package leetcode.leetcode_by_topics.array.island_problems;
 
 public class SurroundedRegions {
 

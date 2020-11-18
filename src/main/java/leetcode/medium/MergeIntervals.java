@@ -1,9 +1,14 @@
 package leetcode.medium;
 
 import edu.princeton.cs.algs4.In;
+import org.apache.hadoop.io.Text;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Stack;
 
 public class MergeIntervals {
@@ -15,6 +20,8 @@ public class MergeIntervals {
 				{11, 13}
 		};
 		merge(array);
+
+		mergeRepeat(array);
 	}
 
 	public static int[][] merge(int[][] intervals) {
@@ -63,5 +70,49 @@ public class MergeIntervals {
 		public Integer getSecond(){
 			return this.n2;
 		}
+	}
+
+
+	public static int[][] mergeRepeat(int[][] intervals) {
+
+		if(intervals.length < 2) {
+			return intervals;
+		}
+
+		Comparator<int[]> comparator = Comparator.comparingInt(array -> array[0]);
+		Arrays.sort(intervals, comparator);
+
+		int left = intervals[0][0];
+		int right = intervals[0][1];
+
+		List<int[]> result = new ArrayList<>();
+
+		for(int i=1; i< intervals.length; i++) {
+			if(right < intervals[i][0]) {
+				// new interval!
+				result.add(new int[]{left, right});
+				left = intervals[i][0];
+				right = intervals[i][1];
+			} else if(right == intervals[i][0] || right < intervals[i][1]) {
+				// update right
+				right = intervals[i][1];
+			}
+		}
+
+		if(result.size() > 0) {
+			int[] last = result.get(result.size() - 1);
+			if (last[0] != left && last[1] != right) {
+				result.add(new int[]{left, right});
+			}
+		} else {
+			result.add(new int[]{left, right});
+		}
+
+		int[][] res = new int[result.size()][2];
+		for(int i=0; i< result.size(); i++) {
+			res[i] = result.get(i);
+		}
+
+		return res;
 	}
 }
