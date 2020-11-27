@@ -1,6 +1,6 @@
 package leetcode.medium;
 
-public class HouseRobber {
+public class HouseRobberII {
 
 	public static void main(String[] args) {
 		System.out.println(rob(new int[]{2, 3, 3}) == 3);

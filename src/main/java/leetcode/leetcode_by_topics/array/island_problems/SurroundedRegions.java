@@ -3,6 +3,14 @@ package leetcode.leetcode_by_topics.array.island_problems;
 public class SurroundedRegions {
 
 	public static void main(String[] args) {
+
+		char[][] boardNew = {
+				{'O', 'O', 'O'},
+				{'O', 'O', 'O'},
+				{'O', 'O', 'O'}
+		};
+		solveNew(boardNew);
+
 		char [][] board = new char[4][4];
 		board[0] = new char[]{'X', 'X', 'X', 'X'};
 		board[1] = new char[]{'X', 'O', 'O', 'X'};
@@ -147,5 +155,66 @@ public class SurroundedRegions {
 		if(j < board[0].length-1 && board[i][j+1] == 'O'){
 			dfsBoundary(board, i, j+1);
 		}
+	}
+
+	public static void solveNew(char[][] board) {
+		if(board.length == 0 || board[0].length == 0) {
+			return;
+		}
+
+		for(int i=0; i< board.length; i++) {
+			if(board[i][0] == 'O') {
+				board[i][0] = 'N';
+			}
+
+			if(board[i][board[0].length - 1] == 'O') {
+				board[i][board[0].length - 1] = 'N';
+			}
+		}
+
+		for(int i=0; i< board[0].length; i++) {
+			if(board[0][i] == 'O') {
+				board[0][i] = 'N';
+			}
+
+			if(board[board.length - 1][i] == 'O') {
+				board[board.length - 1][i] = 'N';
+			}
+		}
+
+		for(int i=0; i< board.length; i++) {
+			for(int j=0; j < board[0].length; j++){
+				if (board[i][j] == 'N') {
+					mark(i, j, board, i, j);
+				}
+			}
+		}
+
+		for(int i=0; i< board.length; i++) {
+			for(int j=0; j < board[0].length; j++){
+				if (board[i][j] == 'O') {
+					board[i][j] = 'X';
+				} else if(board[i][j] == 'N') {
+					board[i][j] = 'O';
+				}
+			}
+		}
+	}
+
+	public static void mark(int i, int j, char[][] board, int startI, int startJ) {
+		if (i < 0 || i >= board.length  || j < 0 || j >= board[0].length ) {
+			return;
+		}
+
+		if((board[i][j] == 'X' || board[i][j] == 'N' ) && (startI != i || startJ != j)) {
+			return;
+		}
+
+		board[i][j] = 'N';
+
+		mark(i + 1, j, board, startI, startJ);
+		mark(i - 1, j, board, startI, startJ);
+		mark(i, j + 1, board, startI, startJ);
+		mark(i, j - 1, board, startI, startJ);
 	}
 }
