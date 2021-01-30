@@ -22,13 +22,13 @@ public class IncreasingSums {
 		int index = 0;
 		int size = 1;
 		int sum;
-		while(index < arr.length) {
+		while (index < arr.length) {
 			sum = 0;
-			for(int j=0; j< size && index + j < arr.length; j++) {
-				sum+= arr[index + j];
+			for (int j = 0; j < size && index + j < arr.length; j++) {
+				sum += arr[index + j];
 			}
 			result.add(sum);
-			index+= size;
+			index += size;
 			size++;
 		}
 		return result;
