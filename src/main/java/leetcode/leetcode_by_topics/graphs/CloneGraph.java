@@ -18,7 +18,7 @@ public class CloneGraph {
 		System.out.println(result.val);
 	}
 
-	public static Node create(){
+	public static Node create() {
 		Node n1 = new Node(1);
 		Node n2 = new Node(2);
 		Node n3 = new Node(3);
@@ -31,7 +31,7 @@ public class CloneGraph {
 	}
 
 	public static Node cloneGraph(Node node) {
-		if(node == null) {
+		if (node == null) {
 			return node;
 		}
 		Map<Integer, Node> values = new HashMap<>();
@@ -39,11 +39,11 @@ public class CloneGraph {
 	}
 
 	private static Node cloneGraph(Node node, Map<Integer, Node> values) {
-		if(!values.containsKey(node.val)) {
+		if (!values.containsKey(node.val)) {
 			Node tmp = new Node(node.val);
 			values.put(node.val, tmp);
 			List<Node> list = new ArrayList<>();
-			for(Node v: node.neighbors) {
+			for (Node v : node.neighbors) {
 				Node r = cloneGraph(v, values);
 				list.add(r);
 			}
