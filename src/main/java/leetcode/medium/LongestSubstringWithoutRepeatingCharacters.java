@@ -44,4 +44,24 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
 		return Math.max(maxLen, cLocation.size());
 	}
+
+	public int lengthOfLongestSubstringCoolVersion(String s) {
+		Map<Character, Integer> map = new HashMap<>();
+
+		int result = 0, startPos = 0;
+
+		for(int i = 0; i< s.length(); i++) {
+			if(map.containsKey(s.charAt(i))) {
+				// check if we have found the character inside current substring -
+				// its position should be > startPos
+				// case 1 - repeated character is not in current substring - so left startPos the same
+				// case 2 - in the current substring -> move start pointer to new position
+				startPos = Math.max(startPos, map.get(s.charAt(i)) + 1);
+			}
+			map.put(s.charAt(i), i);
+			result = Math.max(result, i - startPos + 1);
+		}
+
+		return result;
+	}
 }
