@@ -1,4 +1,4 @@
-package leetcode.hard;
+package leetcode.leetcode_by_topics.waterContainers;
 
 public class TrappingRainWater {
 
