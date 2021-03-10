@@ -14,13 +14,15 @@ public class CoinChange {
 		return helper(coins, amount, new int[amount]);
 	}
 
+	// dp[] = array that contains amount of coins that is needed for sum i,
+	// where sum starts from 1(index = 0) to amount(index = amount -1)
 	public static int helper(int[] coins, int amount, int[] dp) {
 		if(amount < 0) {
 			return -1;
 		} else if(amount == 0) {
 			return 0;
 		} else if(dp[amount - 1] != 0) {
-			return dp[amount -1];
+			return dp[amount - 1];
 		}
 
 		int min = Integer.MAX_VALUE;

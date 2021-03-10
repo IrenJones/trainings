@@ -37,4 +37,37 @@ public class IntersectionOfTwoLinkedLists {
 		}
 		return result;
 	}
+
+
+	public ListNode getIntersectionNodeRepeat(ListNode headA, ListNode headB) {
+		int sA = getSizeRepeat(headA);
+		int sB = getSizeRepeat(headB);
+
+		while (sA > sB) {
+			sA--;
+			headA = headA.next;
+		}
+
+		while (sB > sA) {
+			sB--;
+			headB = headB.next;
+		}
+
+		while (headB != null && headA != null && headA != headB) {
+			headA = headA.next;
+			headB = headB.next;
+		}
+
+		return headA;
+	}
+
+	public int getSizeRepeat(ListNode node) {
+		int result = 0;
+		ListNode cur = node;
+		while(cur != null) {
+			cur = cur.next;
+			result++;
+		}
+		return result;
+	}
 }
