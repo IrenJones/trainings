@@ -7,7 +7,7 @@ public class BestTimeToBuyAndSellStockII {
 		System.out.println(maxProfit(new int[]{7,1,5,3,6,4}) == 7);
 	}
 
-	public static int maxProfit(int[] prices) {
+	public static int maxProfitOld(int[] prices) {
 		return maxProfit(prices, 0);
 	}
 
@@ -62,5 +62,20 @@ public class BestTimeToBuyAndSellStockII {
 		}
 
 		return result;
+	}
+
+	public static int maxProfit(int[] prices) {
+		int max = 0, start = 0;
+		for(int i = 1; i < prices.length; i++) {
+			if(prices[i] - prices[i - 1] > 0) {
+				start = i - 1;
+				while(i < prices.length && prices[i] - prices[i - 1] > 0){
+					i++;
+				}
+				max += prices[i - 1] - prices[start];
+			}
+		}
+
+		return max;
 	}
 }
