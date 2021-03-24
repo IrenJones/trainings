@@ -1,8 +1,14 @@
 package structures;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Animal {
 
     public static void main(String[] args) {
+        List list = new ArrayList();
+        list.add(10);
+
         Animall l = new Parrot();
         System.out.println(l.t());
         System.out.println(1.0d);
