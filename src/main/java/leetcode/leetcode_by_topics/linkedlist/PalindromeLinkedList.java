@@ -6,6 +6,9 @@ public class PalindromeLinkedList {
 		System.out.println(isPalindrome(createLinkedList()) == true);
 		System.out.println(isPalindromeNotTrueVersion(createLinkedList()) == true);
 		System.out.println(isPalindromeTrueVersion(createLinkedList()) == true);
+
+		PalindromeLinkedList s = new PalindromeLinkedList();
+		s.isPalindromeRepeat(createLinkedList());
 	}
 
 	private static boolean isPalindromeTrueVersion(ListNode head) {
@@ -120,6 +123,47 @@ public class PalindromeLinkedList {
 			}
 			pointerHead = pointerHead.next;
 			pointerTall = pointerTall.next;
+		}
+
+		return true;
+	}
+
+	public boolean isPalindromeRepeat(ListNode head) {
+		if(head.next == null) {
+			return true;
+		}
+
+		ListNode slow = head;
+		ListNode fast = head.next;
+
+		while(fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+
+		if(fast != null) {
+			slow = slow.next;
+		}
+
+		ListNode reversed = slow;
+		ListNode start = head;
+
+		// reverse second part
+		ListNode prev = new ListNode(-1);
+		while(reversed != null) {
+			ListNode tmp = reversed.next;
+			reversed.next = prev;
+			prev = reversed;
+			reversed = tmp;
+		}
+
+		reversed = prev;
+		while(reversed.val != -1) {
+			if(reversed.val != start.val){
+				return false;
+			}
+			reversed = reversed.next;
+			start = start.next;
 		}
 
 		return true;
