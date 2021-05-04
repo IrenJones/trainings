@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 public class MergeIntervals {
@@ -111,6 +113,37 @@ public class MergeIntervals {
 		int[][] res = new int[result.size()][2];
 		for(int i=0; i< result.size(); i++) {
 			res[i] = result.get(i);
+		}
+
+		return res;
+	}
+
+
+
+	public int[][] mergeAgain(int[][] intervals) {
+		Comparator<int[]> comparator = Comparator.comparingInt(a -> a[0]);
+		Arrays.sort(intervals, comparator);
+
+		List<int[]> list = new ArrayList<>();
+		int right = intervals[0][1];
+
+		list.add(intervals[0]);
+
+		for(int i = 1; i < intervals.length; i++){
+			if(right >=  intervals[i][0] && right < intervals[i][1]){
+				list.set(list.size() - 1, new int[]{list.get(list.size() - 1)[0], intervals[i][1]});
+				right = intervals[i][1];
+			} else if(right >= intervals[i][1]){
+				// continue
+			} else{
+				list.add(intervals[i]);
+				right = intervals[i][1];
+			}
+		}
+
+		int[][] res = new int[list.size()][2];
+		for(int i=0; i < list.size(); i++) {
+			res[i] = list.get(i);
 		}
 
 		return res;
