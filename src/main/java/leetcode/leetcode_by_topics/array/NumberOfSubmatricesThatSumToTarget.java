@@ -14,7 +14,7 @@ public class NumberOfSubmatricesThatSumToTarget {
             {-1, 1}
         };
 
-        s.numSubmatrixSumTarget(arr, 0);
+        s.betterSolution(arr, 0);
     }
 
     // TLE
@@ -70,35 +70,36 @@ public class NumberOfSubmatricesThatSumToTarget {
             return 0;
         }
 
+        int count = 0;
         int n = matrix.length;
         int m = matrix[0].length;
+        int[][] sum = new int[n][m];
 
-        int res = 0;
-        int[][] sum = new int[n][m + 1];
-
-        for (int i = 0; i < sum.length; i++){
-            for (int j = 1; j < sum[0].length; j++){
-                sum[i][j] = sum[i][j - 1] + matrix[i][j - 1];
+        for(int i = 0; i < n; i++){
+            sum[i][0] = matrix[i][0];
+            for(int j = 1; j < m; j++){
+                sum[i][j] = sum[i][j - 1] + matrix[i][j];
             }
         }
 
-
-        for (int start = 0; start < m + 1; start++){
-            for (int end = start + 1; end < m + 1; end++ ){
-                int curSum = 0;
-                Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int start = 0; start < m; start++){
+            for(int end = start; end < m; end++){
+                int res = 0;
+                Map<Integer, Integer> map = new HashMap<>();
                 map.put(0, 1);
-                for(int l = 0; l < n; l++){
-                    curSum += sum[l][end] - sum[l][start];
-                    if (map.containsKey(curSum - target))
-                        res += map.get(curSum - target);
-                    map.put(curSum, map.getOrDefault(curSum, 0) + 1);
 
+                for(int line = 0; line < n; line++){
+                    int prefixSum = start > 0 ? sum[line][start - 1] : 0;
+                    res += sum[line][end] - prefixSum;
+                    if(map.containsKey(res - target)){
+                        count += map.get(res - target);
+                    }
+                    map.put(res, map.getOrDefault(res, 0) + 1);
                 }
             }
         }
 
-        return res;
+        return count;
     }
 
 }
