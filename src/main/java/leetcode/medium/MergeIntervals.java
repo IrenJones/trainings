@@ -1,16 +1,9 @@
 package leetcode.medium;
 
-import edu.princeton.cs.algs4.In;
-import org.apache.hadoop.io.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Stack;
 
 public class MergeIntervals {
