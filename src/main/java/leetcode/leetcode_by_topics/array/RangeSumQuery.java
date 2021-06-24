@@ -1,4 +1,4 @@
-package leetcode.easy;
+package leetcode.leetcode_by_topics.array;
 
 import org.apache.commons.math3.util.Pair;
 
