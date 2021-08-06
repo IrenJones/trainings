@@ -14,7 +14,7 @@ public class IncreasingSums {
 	//[1,14,18,9]
 
 	public static void main(String[] args) {
-		System.out.println(summation(new int[]{1, 6, 8, 5, 9, 4, 7, 2}));
+		System.out.println(summationAgain(new int[]{1, 6, 8, 5, 9, 4, 7, 2}));
 	}
 
 	private static List<Integer> summation(int[] arr) {
@@ -32,5 +32,24 @@ public class IncreasingSums {
 			size++;
 		}
 		return result;
+	}
+
+	private static List<Integer> summationAgain(int[] arr) {
+		List<Integer> list = new ArrayList<>();
+
+		int size = 1;
+		int index = 0;
+
+		while(index < arr.length){
+			int sum = 0;
+			for(int i = index; i < arr.length && i < size + index; i++){
+				sum += arr[i];
+			}
+			list.add(sum);
+			index += size;
+			size++;
+		}
+
+		return list;
 	}
 }

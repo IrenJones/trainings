@@ -12,7 +12,7 @@ public class FindDuplicateFileInSystem {
 
     public static void main(String[] args) {
         FindDuplicateFileInSystem s = new FindDuplicateFileInSystem();
-            s.findDuplicate(new String[]{"root/a 1.txt(abcd) 2.txt(efgh)",
+            s.findDuplicateAgain(new String[]{"root/a 1.txt(abcd) 2.txt(efgh)",
                 "root/c 3.txt(abcd)",
                 "root/c/d 4.txt(efgh)",
                 "root 4.txt(efgh)"});
@@ -38,6 +38,32 @@ public class FindDuplicateFileInSystem {
 
         return map.values().stream()
             .filter(list -> list.size() > 1)
+            .collect(Collectors.toList());
+    }
+
+    public List<List<String>> findDuplicateAgain(String[] paths) {
+        Map<String, List<String>> dup = new HashMap<>();
+
+        Pattern pattern = Pattern.compile("([a-zA-Z0-9\\.]+)\\(([a-zA-Z0-9]+)\\)");
+
+        for(String path: paths){
+            String[] parts = path.split(" ");
+            String dir = parts[0];
+            for(int i = 1; i < parts.length; i++){
+                Matcher matcher = pattern.matcher(parts[i]);
+                while(matcher.find()){
+                    String file = matcher.group(1);
+                    String content = matcher.group(2);
+                    List<String> list = dup.getOrDefault(content, new ArrayList<>());
+                    list.add(dir + "/" + file);
+                    dup.put(content, list);
+                }
+            }
+        }
+
+        return dup.entrySet().stream()
+            .map(Map.Entry::getValue)
+            .filter(l -> l.size() > 1)
             .collect(Collectors.toList());
     }
 }

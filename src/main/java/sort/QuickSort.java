@@ -1,98 +1,50 @@
 package sort;
 
 public class QuickSort {
-	public static void main(String[] args) {
-		int arr[] = new int[]{1, 5, 6, 3, 2, 2, 8, 9, 4, 4, 6};
-		sortAlgo(arr);
-		for (int v : arr) {
-			System.out.print(v + "  ");
-		}
-		System.out.println();
 
-		reverseSortAlgo(arr);
-		for (int v : arr) {
-			System.out.print(v + "  ");
-		}
-		System.out.println();
-	}
+    public int[] sortArray(int[] nums) {
+        if (nums.length == 1) {
+            return nums;
+        }
 
-	private static void sortAlgo(int[] arr) {
-		int n = arr.length;
-		quickSort(arr, 0, n - 1);
-	}
+        quicksort(nums, 0, nums.length - 1);
 
-	private static void quickSort(int[] arr, int left, int right) {
-		if (left < right) {
-			        /* pi is partitioning index, arr[pi] is now
-           at right place */
-			int pivotIndex = partition(arr, left, right);
+        return nums;
+    }
 
-			quickSort(arr, left, pivotIndex - 1);  // Before pi
-			quickSort(arr, pivotIndex + 1, right); // After pi
-		}
-	}
+    public void quicksort(int[] arr, int low, int high) {
+        if (low >= high) {
+            return;
+        }
 
-	private static int partition(int[] arr, int left, int right) {
-		int pivotIndex = (left + right)/2;
-		int pivot = arr[pivotIndex];
-		int indexLeft = left;
-		int indexRight = right;
+        int middle = low + (high - low) / 2;
+        int pivot = arr[middle];
 
-		while (indexLeft <= indexRight){
-			while(arr[indexLeft] < pivot){
-				indexLeft++;
-			}
-			while(arr[indexRight] > pivot){
-				indexRight--;
-			}
-			if(indexLeft <= indexRight) {
-				int temp = arr[indexLeft];
-				arr[indexLeft] = arr[indexRight];
-				arr[indexRight] = temp;
-				indexLeft++;
-				indexRight--;
-			}
-		}
-		return indexLeft;
-	}
+        int i = low, j = high;
+        while (i <= j) {
+            while (arr[i] < pivot) {
+                i++;
+            }
 
-	private static void reverseSortAlgo(int[] arr) {
-		int n = arr.length;
-		reverseQuickSort(arr, 0, n - 1);
-	}
+            while (arr[j] > pivot) {
+                j--;
+            }
 
-	private static void reverseQuickSort(int[] arr, int left, int right) {
-		if (left < right) {
-			        /* pi is partitioning index, arr[pi] is now
-           at right place */
-			int pivotIndex = reversePartition(arr, left, right);
+            if (i <= j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            }
+        }
 
-			reverseQuickSort(arr, left, pivotIndex - 1);  // Before pi
-			reverseQuickSort(arr, pivotIndex + 1, right); // After pi
-		}
-	}
+        if (low < j) {
+            quicksort(arr, low, j);
+        }
 
-	private static int reversePartition(int[] arr, int left, int right) {
-		int pivotIndex = (left + right)/2;
-		int pivot = arr[pivotIndex];
-		int indexLeft = left;
-		int indexRight = right;
-
-		while (indexLeft <= indexRight){
-			while(arr[indexLeft] > pivot){
-				indexLeft++;
-			}
-			while(arr[indexRight] < pivot){
-				indexRight--;
-			}
-			if(indexLeft <= indexRight) {
-				int temp = arr[indexLeft];
-				arr[indexLeft] = arr[indexRight];
-				arr[indexRight] = temp;
-				indexLeft++;
-				indexRight--;
-			}
-		}
-		return indexLeft;
-	}
+        if (high > i) {
+            quicksort(arr, i, high);
+        }
+    }
 }

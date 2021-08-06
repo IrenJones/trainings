@@ -2,6 +2,8 @@ package leetcode.leetcode_by_topics.graphs;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class PathWithMinimumEffort {
@@ -9,6 +11,7 @@ public class PathWithMinimumEffort {
 	public static void main(String[] args) {
 		int[][] arr = {{1,2,3},{3,8,4},{5,3,5}};
 		System.out.println(minimumEffortPath(arr));
+		new PathWithMinimumEffort().minimumEffortPathAgain(arr);
 	}
 
 	public static int minimumEffortPath(int[][] heights) {
@@ -63,5 +66,40 @@ public class PathWithMinimumEffort {
 			}
 		}
 		return -1;
+	}
+
+	Map<String, Integer> dist;
+
+	// TLE
+	public int minimumEffortPathAgain(int[][] heights) {
+		dist = new HashMap<>();
+		int n = heights.length;
+		int m = heights[0].length;
+
+		search(heights, n, m, 0, 0, 0);
+
+		return dist.get((n - 1) + "_" + (m - 1));
+	}
+
+	public void search(int[][] h, int n, int m, int i, int j, int cur){
+		String s = i + "_" + j;
+		if(dist.containsKey(s) && cur >= dist.get(s)){
+			return;
+		}
+
+		dist.put(s, cur);
+
+		if(i - 1 >= 0 && i - 1 <= n - 1 && j >= 0 && j <= m - 1){
+			search(h, n, m, i - 1, j, Math.max(cur, Math.abs(h[i][j] - h[i - 1][j])));
+		}
+		if(i + 1 >= 0 && i + 1 <= n - 1 && j >= 0 && j <= m - 1){
+			search(h, n, m, i + 1, j, Math.max(cur, Math.abs(h[i][j] - h[i + 1][j])));
+		}
+		if(i >= 0 && i <= n - 1 && j - 1>= 0 && j  - 1<= m - 1){
+			search(h, n, m, i, j - 1, Math.max(cur, Math.abs(h[i][j] - h[i][j - 1])));
+		}
+		if(i >= 0 && i <= n - 1 && j + 1>= 0 && j + 1 <= m - 1){
+			search(h, n, m, i, j + 1, Math.max(cur, Math.abs(h[i][j] - h[i][j + 1])));
+		}
 	}
 }

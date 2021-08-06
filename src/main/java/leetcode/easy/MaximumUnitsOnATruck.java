@@ -32,4 +32,27 @@ public class MaximumUnitsOnATruck {
 
         return count;
     }
+
+
+    public int maximumUnitsAgain(int[][] boxTypes, int truckSize) {
+        Comparator<int[]> comparator = Comparator.comparingInt((int[] a) -> a[1]).reversed().thenComparingInt((int[] b) -> b[0]);
+
+        Arrays.sort(boxTypes, comparator);
+
+        int count = 0;
+        int vol = 0;
+        for(int i = 0; i < boxTypes.length; i++){
+            while(count <= truckSize && boxTypes[i][0] > 0){
+                boxTypes[i][0] -= 1;
+                count++;
+                vol += boxTypes[i][1];
+            }
+
+            if(truckSize == count){
+                return vol;
+            }
+        }
+
+        return vol;
+    }
 }
