@@ -1,8 +1,11 @@
 package sort;
 
+import java.util.Arrays;
+
 public class MergeSort {
 	public static void main(String[] args) {
 		int[] arr = new int[]{1, 5, 6, 3, 2, 2, 8, 9, 4, 4, 6};
+		new MergeSort().sort(arr, 0, arr.length - 1);
 		sortAlgo(arr);
 		for (int v : arr) {
 			System.out.print(v + "  ");
@@ -37,6 +40,7 @@ public class MergeSort {
 		int n2 = right - mid;
 		int leftArray[] = new int[n1];
 		int rightArray[] = new int[n2];
+
 		// copy
 		for (int i = 0; i < n1; i++) {
 			leftArray[i] = arr[left + i];
@@ -132,5 +136,45 @@ public class MergeSort {
 			j++;
 			index++;
 		}
+	}
+
+
+	public void sort(int[] nums, int low, int high){
+		if(low >= high){
+			return;
+		}
+
+		int middle = (high + low) / 2;
+
+		sort(nums, low, middle);
+		sort(nums, middle + 1, high);
+
+		merge(nums, low, middle, high);
+	}
+
+	public void merge(int[] nums, int l, int m, int h){
+		int[] left = Arrays.copyOfRange(nums, l, m + 1);
+		int[] right = Arrays.copyOfRange(nums, m + 1, h + 1);
+
+		int index = l, i = 0, j = 0;
+		int sizeLeft = m - l + 1;
+		int sizeRight = h - m;
+
+		while(i < sizeLeft && j < sizeRight){
+			if(left[i] < right[j]){
+				nums[index++] = left[i++];
+			} else{
+				nums[index++] = right[j++];
+			}
+		}
+
+		while(i < sizeLeft){
+			nums[index++] = left[i++];
+		}
+
+		while(j < sizeRight){
+			nums[index++] = right[j++];
+		}
+
 	}
 }

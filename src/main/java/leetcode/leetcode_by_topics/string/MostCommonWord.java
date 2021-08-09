@@ -1,5 +1,6 @@
 package leetcode.leetcode_by_topics.string;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -33,4 +34,22 @@ public class MostCommonWord {
         return res;
     }
 
+    public String mostCommonWordBetter(String paragraph, String[] banned) {
+        Set<String> dictBan = new HashSet<>();
+        for(String word: banned){
+            dictBan.add(word);
+        }
+
+        String[] words = paragraph.replaceAll("[^a-zA-Z]", " ").split("\\s+");
+        Map<String, Integer> map = new HashMap<>();
+
+        for(String word: words){
+            word = word.toLowerCase();
+            if(!dictBan.contains(word)){
+                map.put(word, map.getOrDefault(word, 0) + 1);
+            }
+        }
+
+        return Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
+    }
 }
