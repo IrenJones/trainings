@@ -2,15 +2,18 @@ package patterns;
 
 public class Singleton {
 
-    private Singleton instance;
+    private static volatile Singleton instance;
 
-    private Singleton(){
+    private Singleton(){}
 
-    }
+    public static Singleton getSingleInstance(){
 
-    public Singleton getInstance() {
         if(instance == null){
-            this.instance = new Singleton();
+            synchronized(Singleton.class){
+                if(instance == null){
+                    instance = new Singleton();
+                }
+            }
         }
         return instance;
     }
