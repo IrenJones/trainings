@@ -67,4 +67,23 @@ public class MaxDepthBT {
 		int right = helper(node.right);
 		return Math.max(left, right) + 1;
 	}
+
+	int max;
+
+	public int maxDepthRecAgain(TreeNode root) {
+		max = 0;
+		dfs(root, 0);
+		return max;
+	}
+
+	public void dfs(TreeNode node, int h){
+		if(node == null){
+			return;
+		}
+
+		dfs(node.left, h + 1);
+		max = Math.max(h + 1, max);
+		dfs(node.right, h + 1);
+	}
+
 }

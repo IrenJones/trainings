@@ -77,4 +77,58 @@ public class MaximumUnitsOnATruck {
         }
         return countUnits;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public int maximumUnitsAaaa(int[][] boxTypes, int truckSize) {
+        Comparator<int[]> comparator = Comparator.comparingInt((int[] arr) -> arr[1]).reversed();
+
+        Arrays.sort(boxTypes, comparator);
+
+        int total = 0;
+        for(int i = 0; i < boxTypes.length && truckSize > 0; i++){
+            int count = boxTypes[i][0];
+            if(truckSize - count >= 0){
+                truckSize -= count;
+                total += boxTypes[i][1]*count;
+            } else{
+                truckSize = 0;
+                total += boxTypes[i][1]*truckSize;
+            }
+        }
+
+        return total;
+    }
 }

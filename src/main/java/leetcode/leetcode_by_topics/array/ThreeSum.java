@@ -10,7 +10,7 @@ public class ThreeSum {
 
     public static void main(String[] args) {
         ThreeSum s = new ThreeSum();
-        s.threeSum(new int[]{-1,0,1,2,-1,-4});
+        s.threeSum(new int[] {-1, 0, 1, 2, -1, -4});
     }
 
     public List<List<Integer>> threeSum(int[] nums) {
@@ -34,7 +34,7 @@ public class ThreeSum {
                     if (count > 0) {
                         int min = Math.min(nums[i], Math.min(nums[j], -nums[i] - nums[j]));
                         int max = Math.max(nums[i], Math.max(nums[j], -nums[i] - nums[j]));
-                        int mid = - min - max;
+                        int mid = -min - max;
                         res.put("" + min + "_" + mid + "_" + max, Arrays.asList(min, mid, max));
                     }
                 }
@@ -44,5 +44,40 @@ public class ThreeSum {
         return res.size() == 0
             ? new ArrayList()
             : new ArrayList<>(res.values());
+    }
+
+    public List<List<Integer>> threeSumFaster(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums.length < 3){
+            return res;
+        }
+
+        Arrays.sort(nums);
+        int n = nums.length;
+        for(int i = 0; i < n - 2; i++){
+            while(i > 0 && i < n - 2 && nums[i] == nums[i - 1]){
+                i++;
+            }
+
+            int j = i + 1, k = n - 1;
+            while(j < k){
+                if(nums[i] + nums[j] + nums[k] == 0){
+                    res.add(Arrays.asList(nums[i],nums[j],nums[k]));
+                    j++;
+                    k--;
+                    while(j < k && nums[j] == nums[j - 1]){
+                        j++;
+                    }
+                    while(j < k && nums[k] == nums[k + 1]){
+                        k--;
+                    }
+                } else if(nums[i] + nums[j] + nums[k] < 0) {
+                    j++;
+                } else{
+                    k--;
+                }
+            }
+        }
+        return res;
     }
 }
